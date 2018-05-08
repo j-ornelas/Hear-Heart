@@ -1,10 +1,18 @@
 import React from "react";
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { Video } from 'expo';
 
-export default function Video (props){
+export default function VideoView (props){
+  const { width } = Dimensions.get('window');
   return (
     <View style={styles.container}>
-      <Text>This is the Video View</Text>
+      <Video
+    	  source={{ uri: 'https://s3-us-west-1.amazonaws.com/heart-videos/blood.mp4' }}
+        shouldPlay
+    	  resizeMode="cover"
+    	  style={{ width, height: 300 }}
+    	/>
+
     </View>
   )
 }
