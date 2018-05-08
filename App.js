@@ -1,5 +1,7 @@
 import React from 'react';
-import Video from './Components/Video.js'
+import { Platform, StatusBar, Modal, TouchableHighlight } from 'react-native';
+
+import VideoView from './Components/Video.js'
 import Input from './Components/Input.js'
 
 import { StyleSheet, Text, View } from 'react-native';
@@ -13,12 +15,22 @@ export default class App extends React.Component {
       end: ["110", "111", "112", "113", "114", "115", "116", "117", "118"],
       startInput: "",
       endInput: "",
+      modalVisible: false
     }
   }
 
   handleButtonPress(){
-    console.log('clicked');
+    let startArr = this.state.start;
+    let endArr = this.state.end;
+    let start = this.state.startInput;
+    let end = this.state.endInput
+    if (startArr.includes(start) && endArr.includes(end)){
+      console.log('correct!')
+    } else {
+      console.log('wrong!')
+    }
   }
+
 
   debugButton(){
     console.log(this.state)
@@ -32,14 +44,17 @@ export default class App extends React.Component {
     this.setState({endInput:text})
   }
 
+  toggleModal(){
+    this.setState({modalVisible:!this.state.modalVisible})
+    console.log(this.state)
+  }
+
 
 
   render() {
     return (
       <View style={styles.container}>
-        <Text>{this.state.video}</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-        <Video />
+        <VideoView />
         <Input
           startInput={this.state.startInput}
           endInput={this.state.endInput}
@@ -56,9 +71,8 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    paddingTop: StatusBar.currentHeight,
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
