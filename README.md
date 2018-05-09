@@ -1,2 +1,2 @@
 # Hear-Heart
-React Native app for healthcare professionals
+Mobile app to help train medical professionals, built with React Native.
